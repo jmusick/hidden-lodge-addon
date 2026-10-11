@@ -1,5 +1,10 @@
 # HiddenLodge
 
+Repository: [jmusick/hidden-lodge-addon](https://github.com/jmusick/hidden-lodge-addon). Local folder: `C:/Users/JD/source/hidden-lodge-addon`.
+
+This README owns setup and usage; [AGENTS.md](AGENTS.md) owns coding conventions. Companion projects: [website](https://github.com/jmusick/hidden-lodge-website/blob/main/README.md) · [desktop](https://github.com/jmusick/hidden-lodge-desktop/blob/master/README.md) · [sim](https://github.com/jmusick/hidden-lodge-sim/blob/master/README.md). Creative masters and provenance live in `C:/Users/JD/projects/hidden-lodge/README.md`. The Obsidian project note links to these files; implementation and operational instructions belong here.
+
+
 World of Warcraft addon for the Hidden Lodge guild — surfaces data synced from the HiddenLodge Desktop app and the HiddenLodge website, plus a handful of standalone in-game tools (cauldron tracking, raid invites/organizing, guild note sync).
 
 ## Files
@@ -29,7 +34,7 @@ If Ace3 is missing, HiddenLodge prints a friendly chat warning instead of hard f
 ## Build and workflow
 WoW addons are not usually "built" like web apps. The normal workflow is edit -> reload UI in game.
 
-1. Keep this folder as your addon root (`HiddenLodge`).
+1. Keep the source checkout as `hidden-lodge-addon`; install/symlink it under WoW’s required addon name `HiddenLodge`.
 2. Put or symlink this folder into your WoW AddOns directory:
 	- `_retail_/Interface/AddOns/HiddenLodge`
 3. Launch game, enable `HiddenLodge` and `Ace3` on character select.
