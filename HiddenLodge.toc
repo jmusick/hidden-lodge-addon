@@ -18,5 +18,6 @@ HiddenLodge_InviteTool.lua
 HiddenLodge_RaidComp.lua
 HiddenLodge_AltNoteSync.lua
 HiddenLodge_CauldronTracker.lua
+HiddenLodge_FlaskReminder.lua
 HiddenLodge_Integration_RCLootCouncil.lua
 HiddenLodge_UI.lua

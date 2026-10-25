@@ -93,6 +93,11 @@ local function ensureDefaults(db)
     db.cauldron = db.cauldron or {}
     db.cauldron.days = db.cauldron.days or {}
     db.cauldron.debugLog = db.cauldron.debugLog or {}
+
+    db.flaskReminder = db.flaskReminder or {}
+    if db.flaskReminder.enabled == nil then
+        db.flaskReminder.enabled = true
+    end
 end
 
 function HiddenLodge:RegisterIntegration(name, integration)
@@ -164,6 +169,9 @@ function HiddenLodge:OnEnable()
     if self.OnEnableCauldronTracker then
         self:OnEnableCauldronTracker()
     end
+    if self.OnEnableFlaskReminder then
+        self:OnEnableFlaskReminder()
+    end
 end
 
 function HiddenLodge:HandleAddonLoaded(_, loadedAddonName)
@@ -202,5 +210,12 @@ function HiddenLodge:HandleSlashCommand(input)
         return
     end
 
-    self:Print("Usage: /hl [show|hide|cauldron|raidcomp]")
+    if command == "flask" then
+        if self.ToggleFlaskReminderEnabled then
+            self:ToggleFlaskReminderEnabled()
+        end
+        return
+    end
+
+    self:Print("Usage: /hl [show|hide|cauldron|raidcomp|flask]")
 end

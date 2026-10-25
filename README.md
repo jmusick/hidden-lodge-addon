@@ -20,6 +20,7 @@ World of Warcraft addon for the Hidden Lodge guild — surfaces data synced from
 - `HiddenLodge_RaidComp.lua`: Raid Comp panel — imports a pasted export string from the website's Raid Composition page and uses it to invite missing raiders, organize raid subgroups to match, and whisper downsize notices to raiders cut from the comp.
 - `HiddenLodge_AltNoteSync.lua`: Guild public-note sync — auto-applies synced main/nickname notes when you can edit them, plus a "Mismatched Notes" review window.
 - `HiddenLodge_CauldronTracker.lua`: Raid cauldron flask/phial tracking (spell-cast + loot detection) and its popup window.
+- `HiddenLodge_FlaskReminder.lua`: Logout reminder with a one-click **Use Flask** button when a Fleeting flask/phial is still in your bags.
 - `HiddenLodge_Integration_RCLootCouncil.lua`: RCLootCouncil integration module that injects the Prep/GV/Att/Signup/Upgrade voting-frame columns.
 - `HiddenLodge_UI.lua`: Main window construction, desktop sync status display, and buttons that open the other panels.
 
@@ -81,6 +82,7 @@ When RCLootCouncil is installed and loaded, HiddenLodge injects five sortable co
 - `/hl hide`: Hide the main window.
 - `/hl cauldron`: Toggle the cauldron tracker window.
 - `/hl raidcomp`: Open the Raid Comp panel.
+- `/hl flask`: Turn the Fleeting flask logout reminder on/off (on by default).
 - Raid Invites and Show Mismatched Notes are button-only (no slash command) — open them from the main window.
 
 ## Cauldron tracker
@@ -92,6 +94,14 @@ Tracks how many flasks/phials each raider takes from raid cauldrons, ported from
 - Counts are scoped per day and reset at `/reload` only if the active cauldron window has expired.
 - **Reset** clears the current day's counts; **Share** posts the current day's counts to chat via `C_ChatInfo.SendChatMessage`.
 - Open via the "Cauldron Tracker" button on the main window or `/hl cauldron`.
+
+## Fleeting flask logout reminder
+If a Fleeting flask or phial (the kind handed out by raid cauldrons) is still in your bags, a small reminder appears under the Game Menu when you open it, and again under the countdown popup if you start a 20-second logout/quit. Its **Use Flask** button drinks the flask with one click; **Dismiss** hides it. Toggle it with `/hl flask`.
+
+- It never blocks or delays logging out — it only shows up where you're about to click Log Out / Exit Game.
+- Typing `/logout` or `/quit` in a rested area (inn/city) logs out instantly, so there's no window to show the reminder; open the Game Menu instead if you want it.
+- Not shown in combat (a secure button can't be shown then, and you can't log out in combat anyway).
+- Detection is by item name (`Fleeting ...` flask/phial), so it's English-client only, same as the Cauldron Tracker.
 
 ## CurseForge release automation
 This repo includes tag-based release automation in `.github/workflows/release.yml` using `BigWigsMods/packager`, publishing to CurseForge project id `1498420` (set in `.pkgmeta`). Push a tag matching the version in `HiddenLodge.toc` (e.g. `v1.5.0`) to trigger a release — bump `## Version` in the `.toc` first, since there's no separate version file.
