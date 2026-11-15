@@ -2,7 +2,7 @@
 
 Repository: [jmusick/hidden-lodge-addon](https://github.com/jmusick/hidden-lodge-addon). Local folder: `C:/Users/JD/source/hidden-lodge-addon`.
 
-This README owns setup and usage; [AGENTS.md](AGENTS.md) owns coding conventions. Companion projects: [website](https://github.com/jmusick/hidden-lodge-website/blob/main/README.md) · [desktop](https://github.com/jmusick/hidden-lodge-desktop/blob/master/README.md) · [sim](https://github.com/jmusick/hidden-lodge-sim/blob/master/README.md). Creative masters and provenance live in `C:/Users/JD/projects/hidden-lodge/README.md`. The Obsidian project note links to these files; implementation and operational instructions belong here.
+This README owns setup and usage; [AGENTS.md](AGENTS.md) owns coding conventions. Companion projects: [website](https://github.com/jmusick/hidden-lodge-website/blob/main/README.md) · [desktop](https://github.com/jmusick/hidden-lodge-desktop/blob/main/README.md) · [sim](https://github.com/jmusick/hidden-lodge-sim/blob/main/README.md). Creative masters and provenance live in `C:/Users/JD/projects/hidden-lodge/README.md`. The Obsidian project note links to these files; implementation and operational instructions belong here.
 
 
 World of Warcraft addon for the Hidden Lodge guild — surfaces data synced from the HiddenLodge Desktop app and the HiddenLodge website, plus a handful of standalone in-game tools (cauldron tracking, raid invites/organizing, guild note sync).
@@ -107,3 +107,6 @@ If a Fleeting flask or phial (the kind handed out by raid cauldrons) is still in
 This repo includes tag-based release automation in `.github/workflows/release.yml` using `BigWigsMods/packager`, publishing to CurseForge project id `1498420` (set in `.pkgmeta`). Push a tag matching the version in `HiddenLodge.toc` (e.g. `v1.5.0`) to trigger a release — bump `## Version` in the `.toc` first, since there's no separate version file.
 
 `CURSEFORGE_API_TOKEN` must already exist in this repo's GitHub Actions secrets for the workflow to authenticate.
+
+## CI
+`.github/workflows/ci.yml` calls the shared `jmusick/ci` baseline workflow (Gitleaks secret scan; the npm checks are skipped since there is no `package.json`) on pull requests and pushes to `main`. The **CI gate** job is the one check to require. Actions are pinned to commit SHAs, and Dependabot keeps the pins current.
